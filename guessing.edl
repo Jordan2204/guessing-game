@@ -13,7 +13,8 @@ enclave {
 
     untrusted {
         int host_guessing_result();
-        void host_helloworld();
+        int enclave_guessing_init(int n);
+        int enclave_guessing_send(int n);
     };
 };
 

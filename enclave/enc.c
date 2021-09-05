@@ -26,19 +26,7 @@ void enclave_helloworld()
     // the fprintf function is not part of the enclave
     // as it requires support from the kernel.
     fprintf(stdout, "Hello world my dear,\n
-     Enter The max value for the Guessing Game (must be inferior to 500)");
-
-
-    // Call back into the host
-    oe_result_t result = host_helloworld();
-    if (result != OE_OK)
-    {
-        fprintf(
-            stderr,
-            "Call to host_helloworld failed: result=%u (%s)\n",
-            result,
-            oe_result_str(result));
-    }
+     Enter The max value for the Guessing Game (must be inferior to 500)\n");
 }
 
 int enclave_guessing_init_t(){
@@ -46,11 +34,9 @@ int enclave_guessing_init_t(){
     // does not directly call fprintf, but calls into the
     // host and calls fprintf from there. This is because
     // the fprintf function is not part of the enclave
-     fprintf(stdout, "Hello world my dear,\n
-     Enter The max value for the Guessing Game (must be inferior to 500)");
-
+   
     // Call back into the host
-    oe_result_t result = host_host_guessing_init();
+    oe_result_t result = host_guessing_init();
     if (result != OE_OK)
     {
         fprintf(
