@@ -6,11 +6,12 @@ enclave {
     from "platform.edl" import *;
 
     trusted {
-        public void enclave_helloworld();
+        public void enclave_guessing();
     };
 
     untrusted {
-        void host_helloworld();
+        int host_guessing_init();
+        int host_guessing_send();
     };
 };
 

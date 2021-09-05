@@ -17,8 +17,8 @@ clean:
 	$(MAKE) -C host clean
 
 run:
-	host/helloworldhost ./enclave/helloworldenc.signed
+	host/guessinghost ./enclave/guessingenc.signed
 
 simulate:
-	host/helloworldhost ./enclave/helloworldenc.signed --simulate
+	host/guessinghost ./enclave/guessingenc.signed --simulate
 

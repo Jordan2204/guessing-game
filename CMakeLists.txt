@@ -23,7 +23,7 @@ else ()
   endif ()
 endif ()
 
-project("Hello World Sample" LANGUAGES C CXX)
+project("Guessing Game" LANGUAGES C CXX)
 
 # Currently the `OpenEnclave` package depends on `project()`.
 find_package(OpenEnclave CONFIG REQUIRED)
@@ -45,20 +45,20 @@ add_custom_command(
 # Sign enclave
 add_custom_command(
   OUTPUT enclave/enclave.signed
-  DEPENDS enclave enclave/helloworld.conf private.pem
+  DEPENDS enclave enclave/guessing.conf private.pem
   COMMAND openenclave::oesign sign -e $<TARGET_FILE:enclave> -c
-          ${CMAKE_SOURCE_DIR}/enclave/helloworld.conf -k private.pem)
+          ${CMAKE_SOURCE_DIR}/enclave/guessing.conf -k private.pem)
 
 add_custom_target(sign ALL DEPENDS enclave/enclave.signed)
 
 if ((NOT DEFINED ENV{OE_SIMULATION}) OR (NOT $ENV{OE_SIMULATION}))
   add_custom_target(
     run
-    DEPENDS helloworld_host sign
-    COMMAND helloworld_host ${CMAKE_BINARY_DIR}/enclave/enclave.signed)
+    DEPENDS guessing_host sign
+    COMMAND guessing_host ${CMAKE_BINARY_DIR}/enclave/enclave.signed)
 endif ()
 
 add_custom_target(
   simulate
-  DEPENDS helloworld_host sign
-  COMMAND helloworld_host ${CMAKE_BINARY_DIR}/enclave/enclave.signed --simulate)
+  DEPENDS guessing_host sign
+  COMMAND guessing_host ${CMAKE_BINARY_DIR}/enclave/enclave.signed --simulate)

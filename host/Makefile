@@ -9,12 +9,12 @@ INCDIR=$(shell pkg-config oehost-$(COMPILER) --variable=includedir)
 
 build:
 	@ echo "Compilers used: $(CC), $(CXX)"
-	oeedger8r ../helloworld.edl --untrusted \
+	oeedger8r ../guessing.edl --untrusted \
 		--search-path $(INCDIR) \
 		--search-path $(INCDIR)/openenclave/edl/sgx
 	$(CC) -g -c $(CFLAGS) host.c
-	$(CC) -g -c $(CFLAGS) helloworld_u.c
-	$(CC) -o helloworldhost helloworld_u.o host.o $(LDFLAGS)
+	$(CC) -g -c $(CFLAGS) guessing_u.c
+	$(CC) -o guessinghost guessing_u.o host.o $(LDFLAGS)
 
 clean:
-	rm -f helloworldhost host.o helloworld_u.o helloworld_u.c helloworld_u.h helloworld_args.h
+	rm -f guessinghost host.o guessing_u.o guessing_u.c guessing_u.h guessing_args.h
