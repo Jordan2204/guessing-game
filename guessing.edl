@@ -7,14 +7,15 @@ enclave {
 
     trusted {
         public void enclave_helloworld();
-        public int enclave_guessing_init(int n);
+        public int enclave_guessing_init(oe_enclave_t* enclave, int max);
         public int enclave_guessing_send(int n);
      };
 
     untrusted {
+        int host_guessing_init(int max);
+        int host_guessing_send(int n);
         int host_guessing_result();
-        int enclave_guessing_init(int n);
-        int enclave_guessing_send(int n);
+     
     };
 };
 

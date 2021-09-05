@@ -17,6 +17,8 @@
 // This is the function that the host calls. It prints
 // a message in the enclave before calling back out to
 int number_to_guess;
+int max_number;
+int min_number = 0;
 
 void enclave_helloworld()
 {
@@ -29,19 +31,21 @@ void enclave_helloworld()
      Enter The max value for the Guessing Game (must be inferior to 500)\n");
 }
 
-int enclave_guessing_init_t(){
-    // Print a message from the enclave. Note that this
-    // does not directly call fprintf, but calls into the
-    // host and calls fprintf from there. This is because
-    // the fprintf function is not part of the enclave
-   
+int enclave_guessing_init(oe_enclave_t* enclave, int max){
+    //Max number
+    max_number =  max;
+    
+    //Guessing number generation
+    srand(time(NULL));
+    number_to_guess = 0+(rand()%(max_number-min_number + 1));
+
     // Call back into the host
-    oe_result_t result = host_guessing_init();
+    oe_result_t result = host_guessing_init(max);
     if (result != OE_OK)
     {
         fprintf(
             stderr,
-            "Call to host_helloworld failed: result=%u (%s)\n",
+            "Call to host_guessing_init failed: result=%u (%s)\n",
             result,
             oe_result_str(result));
     }

@@ -28,26 +28,11 @@ bool check_simulate_opt(int* argc, const char* argv[])
 
 // This is the function that the enclave will call back into to
 // print a message.
-void host_helloworld()
-{
-    fprintf(stdout, "Enclave called into host to print: Hello World!\n");
-}
 
 
 int host_guessing_init(int max) {
-    // Create the guessing_init the enclave
-    result = oe_create_guessing_init_enclave(
-        argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
-    if (result != OE_OK)
-    {
-        fprintf(
-            stderr,
-            "oe_create_guessing_init_enclave(): result=%u (%s)\n",
-            result,
-            oe_result_str(result));
-        goto exit;
-    }
-
+   
+    fprintf(stdout, "Max value : %d \n", max);
 
 }
 
@@ -83,8 +68,20 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
-    //Send max value for the guess game to the enclave
-    result = enclave_guessing_init_t(enclave);
+     // Create the guessing_init  enclave
+    result = oe_create_guessing_init_enclave(
+        argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
+    if (result != OE_OK)
+    {
+        fprintf(
+            stderr,
+            "oe_create_guessing_init_enclave(): result=%u (%s)\n",
+            result,
+            oe_result_str(result));
+        goto exit;
+    }
+
+    result = enclave_guessing_init_t(enclave, scanf("%d"););
     if (result != OE_OK)
     {
         fprintf(
@@ -95,6 +92,24 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
+
+    //Loop
+     do{
+
+        printf("\nEnter a guess value :  ");
+        scanf("%d",&n);
+
+
+        if(n < nbreAd){
+            printf("%d est inferieur",n);
+        }else if(n> nbreAd){
+            printf("%d est superieur",n);
+        }else{
+        printf("\nBravo vous avez trouver le nombre mystere en %d coup",compteur);
+        }
+
+        compteur++;
+        }while(n != nbreAd);
 
 
 
