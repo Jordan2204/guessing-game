@@ -115,7 +115,7 @@ int main(int argc, const char* argv[])
         //Calling the enclave_guessing_send function
         user_input = 0;
         scanf("%d", &user_input);
-        printf("\nYou Entered :  %d ", user_input);
+        printf("\nYou Entered :  %d \n", user_input);
         result = enclave_guessing_send(enclave, user_input);
         if (result != OE_OK)
         {

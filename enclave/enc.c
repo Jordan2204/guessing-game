@@ -22,7 +22,7 @@ void enclave_helloworld()
     // Print a message from the enclave. Note that this
     // does not directly call fprintf, but calls into the
     // host and calls fprintf from there. This is because
-    fprintf(stdout, "Hello world my dear,\n Enter The max value for the Guessing Game (must be inferior to 500) : ");
+    fprintf(stdout, "Hello world my dear,\n Enter the max value for the Guessing Game (must be inferior to 500): ");
 }
 
 void enclave_guessing_init(int max){
