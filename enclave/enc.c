@@ -25,8 +25,7 @@ void enclave_helloworld()
     // host and calls fprintf from there. This is because
     // the fprintf function is not part of the enclave
     // as it requires support from the kernel.
-    fprintf(stdout, "Hello world my dear,\n
-     Enter The max value for the Guessing Game (must be inferior to 500)\n");
+    fprintf(stdout, "Hello world my dear,\n Enter The max value for the Guessing Game (must be inferior to 500)\n");
 }
 
 int enclave_guessing_init(oe_enclave_t* enclave, int max){
