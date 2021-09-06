@@ -28,7 +28,7 @@ void enclave_helloworld()
     fprintf(stdout, "Hello world my dear,\n Enter The max value for the Guessing Game (must be inferior to 500)\n");
 }
 
-int enclave_guessing_init(oe_enclave_t* enclave, int max){
+void enclave_guessing_init(oe_enclave_t* enclave, int max){
     //Max number
     max_number =  max;
 
@@ -49,7 +49,7 @@ int enclave_guessing_init(oe_enclave_t* enclave, int max){
 
 }
 
-int enclave_guessing_send(oe_enclave_t* enclave, int value){
+void enclave_guessing_send(oe_enclave_t* enclave, int value){
     int res;
     if(value != number_to_guess){
         res = 0;

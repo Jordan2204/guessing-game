@@ -30,13 +30,13 @@ bool check_simulate_opt(int* argc, const char* argv[])
 // print a message.
 
 
-int host_guessing_init(int max) {
+void host_guessing_init(int max) {
    
     fprintf(stdout, "Max value : %d \n", max);
 
 }
 
-int host_guessing_result(int value, bool* play) {
+void host_guessing_result(int value, bool* play) {
    
     if(value == 0){
         fprintf(stdout, "Wrong guess\n");
