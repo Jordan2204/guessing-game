@@ -1,0 +1,11 @@
+/home/jordan/samples/guessing-game/build/CMakeFiles/edit_cache.dir
+/home/jordan/samples/guessing-game/build/CMakeFiles/simulate.dir
+/home/jordan/samples/guessing-game/build/CMakeFiles/run.dir
+/home/jordan/samples/guessing-game/build/CMakeFiles/rebuild_cache.dir
+/home/jordan/samples/guessing-game/build/CMakeFiles/sign.dir
+/home/jordan/samples/guessing-game/build/enclave/CMakeFiles/rebuild_cache.dir
+/home/jordan/samples/guessing-game/build/enclave/CMakeFiles/edit_cache.dir
+/home/jordan/samples/guessing-game/build/enclave/CMakeFiles/enclave.dir
+/home/jordan/samples/guessing-game/build/host/CMakeFiles/rebuild_cache.dir
+/home/jordan/samples/guessing-game/build/host/CMakeFiles/edit_cache.dir
+/home/jordan/samples/guessing-game/build/host/CMakeFiles/guessing_host.dir

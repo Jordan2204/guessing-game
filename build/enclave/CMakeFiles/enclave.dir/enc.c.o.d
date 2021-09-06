@@ -1,0 +1,28 @@
+enclave/CMakeFiles/enclave.dir/enc.c.o: \
+  /home/jordan/samples/guessing-game/enclave/enc.c \
+  /opt/openenclave/include/openenclave/3rdparty/libc/stdio.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/features.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/bits/deprecations.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/bits/alltypes.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/stdlib.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/alloca.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/math.h \
+  /opt/openenclave/include/openenclave/3rdparty/libc/time.h \
+  /home/jordan/samples/guessing-game/build/enclave/guessing_t.h \
+  /opt/openenclave/include/openenclave/enclave.h \
+  /opt/openenclave/include/openenclave/bits/asym_keys.h \
+  /opt/openenclave/include/openenclave/bits/result.h \
+  /opt/openenclave/include/openenclave/bits/defs.h \
+  /opt/openenclave/include/openenclave/bits/types.h \
+  /opt/openenclave/include/openenclave/bits/evidence.h \
+  /opt/openenclave/include/openenclave/bits/report.h \
+  /opt/openenclave/include/openenclave/bits/exception.h \
+  /opt/openenclave/include/openenclave/bits/fs.h \
+  /opt/openenclave/include/openenclave/bits/module.h \
+  /opt/openenclave/include/openenclave/bits/properties.h \
+  /opt/openenclave/include/openenclave/bits/sgx/sgxproperties.h \
+  /home/jordan/samples/guessing-game/build/enclave/guessing_args.h \
+  /opt/openenclave/include/openenclave/bits/edl/syscall_types.h \
+  /opt/openenclave/include/openenclave/corelibc/bits/types.h \
+  /opt/openenclave/include/openenclave/bits/sgx/sgxtypes.h \
+  /opt/openenclave/include/openenclave/bits/sgx/epid.h
