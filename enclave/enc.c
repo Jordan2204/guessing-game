@@ -50,15 +50,15 @@ int enclave_guessing_init(oe_enclave_t* enclave, int max){
 }
 
 int enclave_guessing_send(oe_enclave_t* enclave, int value){
-    int result;
+    int res;
     if(value != number_to_guess){
-        result = 0;
-    }else if(value = number_to_guess){
-        result = 1;
+        res = 0;
+    }else if(value == number_to_guess){
+        res = 1;
     }
 
     // Call back into the host
-    oe_result_t result = host_guessing_result(result);
+    oe_result_t result = host_guessing_result(res);
     if (result != OE_OK)
     {
         fprintf(
