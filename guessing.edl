@@ -8,13 +8,12 @@ enclave {
     trusted {
         public void enclave_helloworld();
         public int enclave_guessing_init(oe_enclave_t* enclave, int max);
-        public int enclave_guessing_send(int n);
+        public int enclave_guessing_send(int value);
      };
 
     untrusted {
         int host_guessing_init(int max);
-        int host_guessing_send(int n);
-        int host_guessing_result();
+        int host_guessing_result(int result, bool* play);
      
     };
 };

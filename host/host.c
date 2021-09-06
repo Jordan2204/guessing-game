@@ -36,10 +36,22 @@ int host_guessing_init(int max) {
 
 }
 
+int host_guessing_result(int value, bool* play) {
+   
+    if(value == 0){
+        fprintf(stdout, "Wrong guess\n");
+        &play = true;
+    }else{
+        fprintf(stdout, "You Won\n");
+        &play = false;
+    }
+}
+
 int main(int argc, const char* argv[])
 {
     oe_result_t result;
     int ret = 1;
+    bool play = true;
     oe_enclave_t* enclave = NULL;
 
     uint32_t flags = OE_ENCLAVE_FLAG_DEBUG;
@@ -68,7 +80,7 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
-     // Create the guessing_init  enclave
+    // Create the guessing_init  enclave
     result = oe_create_guessing_init_enclave(
         argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
     if (result != OE_OK)
@@ -81,12 +93,13 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
+    //Calling the enclave function
     result = enclave_guessing_init_t(enclave, scanf("%d"););
     if (result != OE_OK)
     {
         fprintf(
             stderr,
-            "calling into enclave_guessing failed: result=%u (%s)\n",
+            "calling into guessing_init_enclave failed: result=%u (%s)\n",
             result,
             oe_result_str(result));
         goto exit;
@@ -94,24 +107,36 @@ int main(int argc, const char* argv[])
 
 
     //Loop
-     do{
+    do{
 
         printf("\nEnter a guess value :  ");
-        scanf("%d",&n);
 
-
-        if(n < nbreAd){
-            printf("%d est inferieur",n);
-        }else if(n> nbreAd){
-            printf("%d est superieur",n);
-        }else{
-        printf("\nBravo vous avez trouver le nombre mystere en %d coup",compteur);
+        // Create the guessing_init  enclave
+        result = oe_create_guessing_send_enclave(
+            argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
+        if (result != OE_OK)
+        {
+            fprintf(
+                stderr,
+                "oe_create_guessing_send_enclave(): result=%u (%s)\n",
+                result,
+                oe_result_str(result));
+            goto exit;
         }
 
-        compteur++;
-        }while(n != nbreAd);
-
-
+        //Calling the enclave function
+        result = enclave_guessing_send_t(enclave, scanf("%d"););
+        if (result != OE_OK)
+        {
+            fprintf(
+                stderr,
+                "calling into enclave_guessing_send failed: result=%u (%s)\n",
+                result,
+                oe_result_str(result));
+            goto exit;
+        }
+     
+    }while(play);
 
 
     ret = 0;
