@@ -23,7 +23,7 @@ and the host. For more information on using the Open Enclave oeedger8r tool refe
 
 ### 1- Using make
 
-Excute the following commands in " "
+Execute the following commands in " "
 
 - Add ". /opt/openenclave/share/openenclave/openenclaverc" to your .bashrc file before compiling.
 - "make build"
@@ -33,7 +33,7 @@ Excute the following commands in " "
 
 - Add ". /opt/openenclave/share/openenclave/openenclaverc" to your .bashrc file before compiling.
 
-Excute the following commands
+Execute the following commands
 - "mkdir build" & "cd build"
 - "make"
 - "make simulate"
