@@ -13,7 +13,7 @@ enclave {
 
     untrusted {
         void host_guessing_init(int max);
-        void host_guessing_result(int result, bool* play);
+        void host_guessing_result(int result);
      
     };
 };
