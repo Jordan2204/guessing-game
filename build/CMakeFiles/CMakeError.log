@@ -1,0 +1,65 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_76eb2/fast && /usr/bin/make  -f CMakeFiles/cmTC_76eb2.dir/build.make CMakeFiles/cmTC_76eb2.dir/build
+make[1]: Entering directory '/home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_76eb2.dir/src.c.o
+/usr/bin/clang-10 -DCMAKE_HAVE_LIBC_PTHREAD   -MD -MT CMakeFiles/cmTC_76eb2.dir/src.c.o -MF CMakeFiles/cmTC_76eb2.dir/src.c.o.d -o CMakeFiles/cmTC_76eb2.dir/src.c.o -c /home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_76eb2
+/usr/local/lib/python2.7/dist-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76eb2.dir/link.txt --verbose=1
+/usr/bin/clang-10 CMakeFiles/cmTC_76eb2.dir/src.c.o -o cmTC_76eb2 
+CMakeFiles/cmTC_76eb2.dir/src.c.o: In function `main':
+src.c:(.text+0x25): undefined reference to `pthread_create'
+src.c:(.text+0x31): undefined reference to `pthread_detach'
+src.c:(.text+0x3d): undefined reference to `pthread_cancel'
+src.c:(.text+0x4f): undefined reference to `pthread_join'
+src.c:(.text+0x66): undefined reference to `pthread_atfork'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+CMakeFiles/cmTC_76eb2.dir/build.make:99: recipe for target 'cmTC_76eb2' failed
+make[1]: *** [cmTC_76eb2] Error 1
+make[1]: Leaving directory '/home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_76eb2/fast' failed
+make: *** [cmTC_76eb2/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_ccfd8/fast && /usr/bin/make  -f CMakeFiles/cmTC_ccfd8.dir/build.make CMakeFiles/cmTC_ccfd8.dir/build
+make[1]: Entering directory '/home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ccfd8.dir/CheckFunctionExists.c.o
+/usr/bin/clang-10   -DCHECK_FUNCTION_EXISTS=pthread_create -MD -MT CMakeFiles/cmTC_ccfd8.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_ccfd8.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_ccfd8.dir/CheckFunctionExists.c.o -c /usr/local/lib/python2.7/dist-packages/cmake/data/share/cmake-3.21/Modules/CheckFunctionExists.c
+Linking C executable cmTC_ccfd8
+/usr/local/lib/python2.7/dist-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccfd8.dir/link.txt --verbose=1
+/usr/bin/clang-10  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_ccfd8.dir/CheckFunctionExists.c.o -o cmTC_ccfd8  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+CMakeFiles/cmTC_ccfd8.dir/build.make:99: recipe for target 'cmTC_ccfd8' failed
+make[1]: *** [cmTC_ccfd8] Error 1
+make[1]: Leaving directory '/home/jordan/samples/guessing-game/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_ccfd8/fast' failed
+make: *** [cmTC_ccfd8/fast] Error 2
+
+
+
