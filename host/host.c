@@ -54,6 +54,7 @@ int main(int argc, const char* argv[])
     oe_result_t result;
     int ret = 1;
     oe_enclave_t* enclave = NULL;
+    int user_input;
 
     uint32_t flags = OE_ENCLAVE_FLAG_DEBUG;
     if (check_simulate_opt(&argc, argv))
@@ -69,7 +70,7 @@ int main(int argc, const char* argv[])
     }
 
     // Create helloworld the enclave
-    result = oe_create_helloworld_enclave(
+    result = oe_create_guessing_enclave(
         argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
     if (result != OE_OK)
     {
@@ -82,7 +83,7 @@ int main(int argc, const char* argv[])
     }
 
     // Create the guessing_init  enclave
-    result = oe_create_guessing_init_enclave(
+    result = oe_create_guessing_enclave(
         argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
     if (result != OE_OK)
     {
@@ -95,7 +96,9 @@ int main(int argc, const char* argv[])
     }
 
     //Calling the enclave function
-    result = enclave_guessing_init_t(enclave, scanf("%d"));
+    user_input = 0;
+    scanf("%d", &user_input);
+    result = enclave_guessing_init(enclave, user_input);
     if (result != OE_OK)
     {
         fprintf(
@@ -113,7 +116,7 @@ int main(int argc, const char* argv[])
         printf("\nEnter a guess value :  ");
 
         // Create the guessing_init  enclave
-        result = oe_create_guessing_send_enclave(
+        result = oe_create_guessing_enclave(
             argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
         if (result != OE_OK)
         {
@@ -126,7 +129,9 @@ int main(int argc, const char* argv[])
         }
 
         //Calling the enclave function
-        result = enclave_guessing_send_t(enclave, scanf("%d"));
+        user_input = 0;
+        scanf("%d", &user_input);
+        result = enclave_guessing_send(enclave, user_input);
         if (result != OE_OK)
         {
             fprintf(
