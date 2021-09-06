@@ -69,33 +69,33 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
-    // Create helloworld the enclave
+    // Create the guessing enclave
     result = oe_create_guessing_enclave(
         argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
     if (result != OE_OK)
     {
         fprintf(
             stderr,
-            "oe_create_helloworld_enclave(): result=%u (%s)\n",
+            "oe_create_guessing_enclave(): result=%u (%s)\n",
             result,
             oe_result_str(result));
         goto exit;
     }
 
-    // Create the guessing_init  enclave
-    result = oe_create_guessing_enclave(
-        argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
+     // Call into the enclave helloworld
+    result = enclave_helloworld(enclave);
     if (result != OE_OK)
     {
         fprintf(
             stderr,
-            "oe_create_guessing_init_enclave(): result=%u (%s)\n",
+            "calling into enclave_helloworld failed: result=%u (%s)\n",
             result,
             oe_result_str(result));
         goto exit;
     }
 
-    //Calling the enclave function
+
+    //Calling the guessing_init_enclave function
     user_input = 0;
     scanf("%d", &user_input);
     result = enclave_guessing_init(enclave, user_input);
@@ -115,20 +115,7 @@ int main(int argc, const char* argv[])
 
         printf("\nEnter a guess value :  ");
 
-        // Create the guessing_init  enclave
-        result = oe_create_guessing_enclave(
-            argv[1], OE_ENCLAVE_TYPE_AUTO, flags, NULL, 0, &enclave);
-        if (result != OE_OK)
-        {
-            fprintf(
-                stderr,
-                "oe_create_guessing_send_enclave(): result=%u (%s)\n",
-                result,
-                oe_result_str(result));
-            goto exit;
-        }
-
-        //Calling the enclave function
+        //Calling the enclave_guessing_send function
         user_input = 0;
         scanf("%d", &user_input);
         result = enclave_guessing_send(enclave, user_input);
@@ -143,7 +130,6 @@ int main(int argc, const char* argv[])
         }
      
     }while(play);
-
 
     ret = 0;
     exit:
