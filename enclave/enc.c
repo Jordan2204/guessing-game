@@ -12,8 +12,7 @@
 // sdk tool oeedger8r against the guessing.edl file.
 #include "guessing_t.h"
 
-// This is the function that the host calls. It prints
-// a message in the enclave before calling back out to
+//Declaration of the differents variables
 int number_to_guess;
 int max_number;
 int min_number = 0;
@@ -23,16 +22,14 @@ void enclave_helloworld()
     // Print a message from the enclave. Note that this
     // does not directly call fprintf, but calls into the
     // host and calls fprintf from there. This is because
-    // the fprintf function is not part of the enclave
-    // as it requires support from the kernel.
-    fprintf(stdout, "Hello world my dear,\n Enter The max value for the Guessing Game (must be inferior to 500)\n");
+    fprintf(stdout, "Hello world my dear,\n Enter The max value for the Guessing Game (must be inferior to 500) : ");
 }
 
 void enclave_guessing_init(int max){
-    //Max number
+    //max number
     max_number =  max;
 
-    //Guessing number generation
+    //guessing number generation
     srand(time(NULL));
     number_to_guess = 0+(rand()%(max_number-min_number + 1));
 
@@ -46,11 +43,12 @@ void enclave_guessing_init(int max){
             result,
             oe_result_str(result));
     }
-
 }
 
 void enclave_guessing_send(int value){
+    //The result variable 
     int res;
+    
     if(value != number_to_guess){
         res = 0;
     }else if(value == number_to_guess){

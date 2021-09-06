@@ -11,6 +11,7 @@
 // sdk tool oeedger8r against the guessing.edl file.
 #include "guessing_u.h"
 
+//The global play variable determine if we guessed the value we end the loop
 bool play = true;
  
 bool check_simulate_opt(int* argc, const char* argv[])
@@ -28,16 +29,13 @@ bool check_simulate_opt(int* argc, const char* argv[])
     return false;
 }
 
-// This is the function that the enclave will call back into to
-// print a message.
-
-
+//This function print the max value entered by the user
 void host_guessing_init(int max) {
    
     fprintf(stdout, "Max value : %d \n", max);
-
 }
 
+//This function print the result 
 void host_guessing_result(int value) {
    
     if(value == 0){
@@ -55,6 +53,8 @@ int main(int argc, const char* argv[])
     int ret = 1;
     oe_enclave_t* enclave = NULL;
     int user_input;
+    int max_guess = 5; // The maximum number of tries
+    int turn = 0;
 
     uint32_t flags = OE_ENCLAVE_FLAG_DEBUG;
     if (check_simulate_opt(&argc, argv))
@@ -82,7 +82,7 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
-     // Call into the enclave helloworld
+     // Call into the enclave_helloworld function
     result = enclave_helloworld(enclave);
     if (result != OE_OK)
     {
@@ -109,15 +109,13 @@ int main(int argc, const char* argv[])
         goto exit;
     }
 
-
     //Loop
     do{
-
         printf("\nEnter a guess value :  ");
-
         //Calling the enclave_guessing_send function
         user_input = 0;
         scanf("%d", &user_input);
+        printf("\nYou Entered :  %d ", user_input);
         result = enclave_guessing_send(enclave, user_input);
         if (result != OE_OK)
         {
@@ -128,9 +126,14 @@ int main(int argc, const char* argv[])
                 oe_result_str(result));
             goto exit;
         }
-     
-    }while(play);
+        turn++;
+    }while(play && turn <= max_guess);
 
+    if (turn > max_guess)
+    {
+        printf("\nNumber of trials exceeded.\n");
+    }
+    
     ret = 0;
     exit:
     // Clean up the enclave if we created one

@@ -6,13 +6,21 @@ enclave {
     from "platform.edl" import *;
 
     trusted {
+        //Displays the initial message 
         public void enclave_helloworld();
+
+        //Initialize the number to guess
         public void enclave_guessing_init(int max);
+
+        //Receive the number entered by the user
         public void enclave_guessing_send(int value);
      };
 
     untrusted {
+        //Displays the maximum number chosen by the user
         void host_guessing_init(int max);
+
+        //Display the result 
         void host_guessing_result( int result);
      
     };
