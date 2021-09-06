@@ -97,6 +97,7 @@ int main(int argc, const char* argv[])
 
     //Calling the guessing_init_enclave function
     user_input = 0;
+    printf("Your input : ");
     scanf("%d", &user_input);
     result = enclave_guessing_init(enclave, user_input);
     if (result != OE_OK)
